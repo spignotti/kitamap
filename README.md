@@ -7,7 +7,7 @@
 
 > **Comprehensive spatial analysis of daycare center coverage in Berlin using GIS technology, including demographic forecasting until 2034**
 
-**🌐 [View Interactive Dashboard](https://pinea.app.carto.com/map/81885962-c7a8-4639-8124-372e0caa6e60)**
+The former interactive CARTO dashboard is no longer publicly available. [Key Results](#key-results) replaces it with three static figures: the 2024 supply rate, the 2034 forecast, and the change between them. The figures are not interactive.
 
 ## Quick Start
 
@@ -37,7 +37,7 @@ KitaMap Berlin is a data-driven project that analyzes the spatial distribution a
 - **📍 Gap Identification**: Detection of underserved areas and hotspots
 - **🚶‍♀️ Accessibility Analysis**: Walking-distance catchment area calculations
 - **🌱 Environmental Integration**: Proximity analysis to green spaces and water areas
-- **📱 Interactive Visualization**: Web-based dashboard with CARTO integration
+- **📱 Static result figures**: District supply maps for 2024, the 2034 forecast, and the change between them
 
 ## Technology Stack
 
@@ -48,7 +48,7 @@ KitaMap Berlin is a data-driven project that analyzes the spatial distribution a
 - **Shapely** - Geometric operations and spatial calculations
 
 ### GIS & Mapping
-- **CARTO** - Interactive web-based visualization platform
+- **CARTO** - Former interactive dashboard. The public map is no longer available.
 - **OpenStreetMap** - Base map data and point-of-interest extraction
 - **OpenRouteService API** - Isochrone and routing calculations
 - **OSMium** - High-performance OSM data processing
@@ -161,7 +161,7 @@ export OPENROUTESERVICE_API_KEY="your_api_key_here"
 - **Gap Analysis**: Identification of supply-demand mismatches
 
 ### 4. Visualization
-- **Interactive Dashboard**: CARTO-powered web visualization
+- **Static figures**: District supply maps in this README. The former CARTO dashboard is no longer publicly available.
 - **Statistical Graphics**: Analysis reports with Matplotlib/Seaborn
 - **Jupyter Integration**: Reproducible analysis workflows
 
@@ -169,15 +169,25 @@ For full methodological detail, see [docs/methodology.md](docs/methodology.md).
 
 ## Key Results
 
-### Current Coverage (2024)
-- **Over-supplied Districts**: Charlottenburg-Wilmersdorf, Steglitz-Zehlendorf
-- **Under-supplied Districts**: Neukölln, Marzahn-Hellersdorf
-- **Critical Areas**: Identified hotspots with significant coverage gaps
+These three figures are the static replacement for the former public dashboard. They use one supply-rate definition for every district: estimated current daycare places divided by the number of children aged 0 to 6, in percent. A value of 100 means one estimated place per child. The 2024 child count is the observed base year in `data/raw/population_development_2015_2024.csv`. The 2034 child count is the committed ETS and Prophet ensemble forecast in `data/processed/population_forecast_2024_2034.csv`. Capacity stays at `Gesamtkapazität` in `data/external/daycare_coverage_base.geojson`, so the 2034 map is a scenario, not an observed count. Districts are joined on `Bezirk`. Map labels are rounded to one decimal after the rates and the percentage-point change are calculated. Spatial coverage (`Abdeckung`) is a separate area percentage and is not the color scale.
 
-### 2034 Forecast
-- **Population Growth**: Rising demand in several districts
-- **Additional Demand**: Need for additional daycare spots by 2034
-- **Priority Areas**: Districts requiring targeted intervention
+![Choropleth of Berlin's 12 districts showing the 2024 daycare supply rate. Tempelhof-Schöneberg is highest at 120.6 percent, Steglitz-Zehlendorf is 116.1 percent, and Marzahn-Hellersdorf is lowest at 68.9 percent. Spandau is 74.4 percent.](docs/figures/supply_rate_2024.png)
+
+![Choropleth of Berlin's 12 districts showing the 2034 forecast daycare supply rate, with capacity held constant. Steglitz-Zehlendorf is 149.9 percent and Marzahn-Hellersdorf is 62.0 percent. The map is a forecast scenario, not an observed 2034 count.](docs/figures/supply_rate_2034.png)
+
+![Choropleth of the change in Berlin district daycare supply rate from 2024 to the 2034 forecast, in percentage points. Pankow rises by 43.4 points, Steglitz-Zehlendorf by 33.7 points, and Mitte by 28.7 points. Marzahn-Hellersdorf falls by 6.8 points and Spandau by 4.0 points.](docs/figures/supply_rate_change_2024_2034.png)
+
+Regenerate the three figures from the committed files:
+
+```bash
+python docs/plot_supply_figures.py
+```
+
+### Supply rate in 2024
+Tempelhof-Schöneberg (120.6%), Steglitz-Zehlendorf (116.1%), Mitte (108.7%), and Friedrichshain-Kreuzberg (105.7%) are above 100%. Marzahn-Hellersdorf (68.9%) and Spandau (74.4%) are the lowest. In `data/external/daycare_coverage_category_2024.geojson`, those two districts are stored as `Unterversorgt`. Neukölln is 87.2% and stored as `Gut versorgt`. Charlottenburg-Wilmersdorf is 81.6% and stored as `Ausreichend versorgt`.
+
+### 2034 forecast
+With capacity held constant, the forecast rate falls in Marzahn-Hellersdorf to 62.0% (`Kritisch unterversorgt` in `daycare_coverage_category_2034.geojson`) and in Spandau to 70.4% (`Unterversorgt`). The largest increases are Pankow (+43.4 percentage points), Steglitz-Zehlendorf (+33.7 percentage points), and Mitte (+28.7 percentage points), where the committed child-population forecast declines. The child-population forecast rises in Marzahn-Hellersdorf, Spandau, Treptow-Köpenick, and Charlottenburg-Wilmersdorf.
 
 ## Applications
 
