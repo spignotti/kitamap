@@ -13,8 +13,8 @@ The former interactive CARTO dashboard is no longer publicly available. [Key Res
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/silas-workspace/KitaMap_Berlin.git
-cd KitaMap_Berlin
+git clone https://github.com/spignotti/kitamap.git
+cd kitamap
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -205,8 +205,8 @@ With capacity held constant, the forecast rate falls in Marzahn-Hellersdorf to 6
 ### Setup
 ```bash
 # 1. Clone the repository
-git clone https://github.com/silas-workspace/KitaMap_Berlin.git
-cd KitaMap_Berlin
+git clone https://github.com/spignotti/kitamap.git
+cd kitamap
 
 # 2. Create virtual environment (recommended)
 python -m venv venv
@@ -233,7 +233,7 @@ MIT. See [LICENSE](LICENSE).
 
 **Silas Pignotti**
 - GitHub: [@silas-workspace](https://github.com/silas-workspace)
-- Project: [KitaMap Berlin](https://github.com/silas-workspace/KitaMap_Berlin)
+- Project: [KitaMap Berlin](https://github.com/spignotti/kitamap)
 
 ## Acknowledgments
 
