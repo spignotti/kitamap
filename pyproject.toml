@@ -72,10 +72,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/silas-workspace/KitaMap_Berlin"
-Documentation = "https://github.com/silas-workspace/KitaMap_Berlin#readme"
-Repository = "https://github.com/silas-workspace/KitaMap_Berlin"
-"Bug Tracker" = "https://github.com/silas-workspace/KitaMap_Berlin/issues"
+Homepage = "https://github.com/spignotti/kitamap"
+Documentation = "https://github.com/spignotti/kitamap#readme"
+Repository = "https://github.com/spignotti/kitamap"
+"Bug Tracker" = "https://github.com/spignotti/kitamap/issues"
 
 [project.scripts]
 kitamap = "run_analysis:main"
